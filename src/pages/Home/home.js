@@ -91,7 +91,7 @@ export default function Home({ navigation }) {
         <View style={styles.container}>
             <View style={styles.containerButton}>
                 <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", justifyContent: "center" }} >
-                    {total.qnt} vendidos hoje  €{total.value?.toFixed(2)}
+                    {total.qnt} vendidos hoje €{total.value?.toFixed(2)}
                 </Text>
             </View>
             <View style={styles.containerButton}>
