@@ -374,7 +374,7 @@ export default function Sells() {
                 }} >Total Venda €{test.toFixed(2)}</Text>
 
             </TouchableOpacity>
-            <ScrollView style={{ width: "100%", backgroundColor: "#eee", marginTop: 5 }}>
+            <ScrollView style={{ width: "100%", backgroundColor: "#eee", marginTop: 5, marginBottom: 40 }}>
                 {list.map((i, x) => {
                     if (i.updatedAt) i.updatedAt = new Date(i.updatedAt)
                     const lastUpdate = i.updatedAt ? i.updatedAt?.getHours().toString().padStart(2, '0') + ":" + i.updatedAt.getMinutes().toString().padStart(2, '0') : ""
