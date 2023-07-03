@@ -9,7 +9,7 @@ import { useIsFocused } from "@react-navigation/native";
 import * as SQLite from "expo-sqlite"
 
 
-export default function Dashboard({ navigation }) {
+export default function Home({ navigation }) {
     const isFocused = useIsFocused();
     const [sells, setSells] = useState([])
 

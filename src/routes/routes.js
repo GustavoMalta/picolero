@@ -2,7 +2,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Sells from '../pages/Sells/sells';
-import Dashboard from '../pages/Home/home';
+import Home from '../pages/Home/home';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,7 +10,7 @@ export const Routes = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator  >
-                <Stack.Screen name="HomePage" component={Dashboard} options={{
+                <Stack.Screen name="HomePage" component={Home} options={{
                     title: 'Picolero System',
                     headerTintColor: '#fff',
                     headerTitleAlign: "center",
