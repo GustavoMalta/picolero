@@ -347,6 +347,8 @@ export default function Sells() {
             );
         });
 
+        if (test - item.price >= 0)
+            setTest(test - item.price)
 
         // if (item.sells >= 0) {
         //     item.updatedAt = new Date().getHours().toString().padStart(2, '0') + ":" + new Date().getMinutes().toString().padStart(2, '0')
@@ -355,26 +357,30 @@ export default function Sells() {
     }
     return (
         <View style={styles.scrollView}>
-            <TouchableOpacity title="ADD" onPress={() => clearTotal()}
-                style={{
-                    justifyContent: "center",
-                    alignContent: "center",
-                    display: "flex",
-                    backgroundColor: "#FFF"
-                }}>
-                <Text size={25} color="#333" style={{
-                    width: 300,
-                    height: 40,
-                    borderRadius: 50,
-                    padding: 4,
-                    fontSize: 20,
-                    textAlign: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#0FF"
-                }} >Total Venda €{test.toFixed(2)}</Text>
+            <View style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                backgroundColor: "#FFF",
+                paddingVertical: 5
+            }}>
+                <TouchableOpacity title="ADD" onPress={() => clearTotal()}
+                    style={{
+                        justifyContent: "center",
+                        width: 300,
+                    }}>
+                    <Text size={25} color="#333" style={{
+                        height: 40,
+                        borderRadius: 50,
+                        padding: 4,
+                        fontSize: 20,
+                        fontWeight: 600,
+                        textAlign: "center",
+                        backgroundColor: "#0FF"
+                    }} >Total Venda €{test.toFixed(2)}</Text>
 
-            </TouchableOpacity>
-            <ScrollView style={{ width: "100%", backgroundColor: "#eee", marginTop: 5, marginBottom: 40 }}>
+                </TouchableOpacity>
+            </View>
+            <ScrollView style={{ width: "100%", backgroundColor: "#eee", marginTop: 5, marginBottom: 45 }}>
                 {list.map((i, x) => {
                     if (i.updatedAt) i.updatedAt = new Date(i.updatedAt)
                     const lastUpdate = i.updatedAt ? i.updatedAt?.getHours().toString().padStart(2, '0') + ":" + i.updatedAt.getMinutes().toString().padStart(2, '0') : ""
