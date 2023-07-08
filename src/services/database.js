@@ -1,238 +1,9 @@
 import * as SQLite from "expo-sqlite"
 import * as Sharing from "expo-sharing"
 import * as FileSystem from "expo-file-system"
-
-const products = [
-    {
-        id: 0,
-        name: "Ben e Jerry 72 unidades",
-        price: 10.50,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 1,
-        name: "Calippo 3 caixas X 24",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 2,
-        name: "Chocnball 1 caixa X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 3,
-        name: "Cola 72",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 4,
-        name: "Cola zero 27",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 5,
-        name: "Corneto chocolate 2 caixas X 24",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 6,
-        name: "Corneto go 2 caixas X 33",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 7,
-        name: "Corneto morango 3 caixas X 24",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 8,
-        name: "Corneto soft 10 caixas X 15",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 9,
-        name: "Cornetto filipinos 2 caixa X 3011",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 10,
-        name: "Epa 2 caixas X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 11,
-        name: "Fanta + nestea 108",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 12,
-        name: "Gominis 2 caixa X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 13,
-        name: "Magnum chocolate branco 2 caixas X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 14,
-        name: "Magnum double 2 caixas X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 15,
-        name: "Magnum starchaser 2 caixas X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 16,
-        name: "Magnum sunlover 2 caixas X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 17,
-        name: "Magnun almond 2 caixas X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 18,
-        name: "Magnun caramel e nuts 1 caixa X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 19,
-        name: "Magnun sandwich 2 caixas X 20",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 20,
-        name: "Perna de pau 2 caixas X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 21,
-        name: "Picolero abacaxi 1 caixa X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 22,
-        name: "Red Bull 24",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 23,
-        name: "Rol 2 caixas X 28",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 24,
-        name: "Solero barrinha 1 caixa X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 25,
-        name: "Solero exótico 2 caixas X 251",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 26,
-        name:
-            "Solero morango e chocolate 2 caixas X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 27,
-        name: "Solero picolero abacate e hortelã 1 caixa X 30",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 28,
-        name: "Sprite 28",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 292,
-        name: "Toy store 2 caixa X 24",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 303,
-        name: "Feast",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-    {
-        id: 313,
-        name: "Agua",
-        price: 12.34,
-        sells: 0,
-        updatedAt: null
-    },
-
-]
+import * as DocumentPicker from "expo-document-picker";
 
 export function getProducts() {
-    let products = []
 
 
     // db.transaction(tx => {
@@ -275,3 +46,30 @@ export function getProducts() {
 export async function exportDbFile() {
     await Sharing.shareAsync(FileSystem.documentDirectory + "SQLite/Picolero.db")
 }
+
+export async function importDbFile() {
+    let result = {}
+    try {
+        result = await DocumentPicker.getDocumentAsync({
+            type: "*/*",
+            copyToCacheDirectory: false,
+        });
+        if (result?.type === 'success') {
+            if (!(await FileSystem.getInfoAsync(FileSystem.documentDirectory + 'SQLite')).exists) {
+                await FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'SQLite');
+            }
+
+            const base64 = await FileSystem.readAsStringAsync(
+                result.uri,
+                {
+                    encoding: FileSystem.EncodingType.Base64
+                }
+            );
+            await FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'SQLite/Picolero.db', base64, { encoding: FileSystem.EncodingType.Base64 });
+        }
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+    return result
+};

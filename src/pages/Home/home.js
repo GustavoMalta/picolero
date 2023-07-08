@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useEffect, useMemo, useState } from "react";
-import { exportDbFile } from "../../services/database";
+import { exportDbFile, importDbFile } from "../../services/database";
 
 import { useIsFocused } from "@react-navigation/native";
 // import {} from "@expo/vector-icons"
@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
         today.setMinutes(0)
 
         db.transaction(tx => {
-            tx.executeSql(`SELECT count(idSell) as count, SUM(price) as max FROM sells WHERE deletedAt ISNULL AND updatedAt > '${today.toString()}'`,
+            tx.executeSql(`SELECT count(idSell) as count, SUM(price) as max FROM sells WHERE deletedAt ISNULL AND updatedAt > '${today.toISOString()}'`,
                 null,
                 (txObj, resultSet) => {
                     setSells(resultSet.rows._array)
@@ -85,7 +85,57 @@ export default function Home({ navigation }) {
 
     }, [sells]
     );
+    const handleImportDBFile = async () => {
+        Alert.alert(
+            //title
+            '* Atenção *',
+            //body
+            'Por segurança, faça o "Export" antes de Importar um novo banco da dados.\n\n' +
+            'Os dadas atuais seram substituídos',
+            [
+                {
+                    text: 'PROSEGUIR', onPress: async () => {
+                        const result = await importDbFile()
+                        if (result.type === 'success') {
+                            db.closeAsync();
+                            setDb(SQLite.openDatabase('Picolero.db'));
+                            Alert.alert(
+                                'Sucesso',
+                                `Banco de dados importado com sucesso`,
+                            );
+                        } else if (result.type === 'cancel') {
+                            Alert.alert(
+                                'Cancelado',
+                                `Importação cancelada`,
+                                null,
+                                { cancelable: true }
+                            )
+                        } else {
+                            Alert.alert(
+                                'Cancelado',
+                                `Falha ao importar o arquivo`,
+                            );
+                        }
+                    }
+                },
+                {
+                    text: 'CANCELAR',
+                    onPress: () =>
+                        Alert.alert(
+                            'Cancelado',
+                            `Importação cancelada`,
+                            null,
+                            { cancelable: true }
+                        ),
+                    style: 'cancel',
+                },
+            ],
+            { cancelable: false }
+            //clicking out side of alert will not cancel
+        );
 
+
+    }
 
     return (
         <View style={styles.container}>
@@ -114,14 +164,23 @@ export default function Home({ navigation }) {
                     </Text>
                 </TouchableOpacity>
             </View>
-            <View style={styles.containerButton}>
+            <View style={{ ...styles.containerButton, justifyContent: "space-between", top: 150 }}>
+                <TouchableOpacity title="ExportDB" onPress={handleImportDBFile}
+                    style={{ ...styles.button, backgroundColor: "#AFF", maxWidth: "40%" }}>
+                    <MaterialIcons name="file-upload" size={30} style={{ ...styles.icon, marginLeft: -15 }} />
+                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", alignContent: "center" }} >
+                        IMPORT DB
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity title="ExportDB" onPress={exportDbFile}
-                    style={{ ...styles.button, backgroundColor: "#AFF" }}>
-                    <MaterialIcons name="file-download" size={30} style={styles.icon} />
+                    style={{ ...styles.button, backgroundColor: "#AFF", maxWidth: "40%" }}>
+                    <MaterialIcons name="file-download" size={30} style={{ ...styles.icon, marginLeft: -15 }} />
                     <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", alignContent: "center" }} >
                         EXPORT DB
                     </Text>
                 </TouchableOpacity>
+            </View>
+            <View style={styles.containerButton}>
             </View>
         </View>
     )
@@ -154,7 +213,6 @@ const styles = StyleSheet.create({
     icon: {
         alignContent: 'center',
         justifyContent: 'center',
-        display: "flex",
         marginRight: 10,
         color: "#333"
     }

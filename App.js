@@ -20,4 +20,5 @@ export default function App() {
 
 /** build a APK file */
 // eas build -p android --profile preview
+// eas update -m message
 

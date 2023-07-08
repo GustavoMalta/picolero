@@ -17,7 +17,7 @@ const products = [
     {
         id: 2,
         name: "Calippo",
-        price: 2.3,
+        price: 1.3,
         sells: 0,
         updatedAt: null
     },
@@ -287,7 +287,7 @@ export default function Sells() {
                 FROM products p 
                     LEFT JOIN sells s ON s.idProduct = p.id
                     AND s.deletedAt ISNULL
-                    AND updatedAt > '${today.toString()}'
+                    AND s.updatedAt > '${today.toISOString()}'
                 GROUP BY p.id
                 ORDER BY name`,
                 null,
@@ -310,7 +310,7 @@ export default function Sells() {
 
         db.transaction(tx => {
             // "INSERT INTO products (id, name, price ) VALUES(?,?,?)", [prod.id, prod.name, prod.price],
-            tx.executeSql('INSERT INTO sells (idProduct, price, updatedAt ) VALUES(?,?,?)', [item.id, item.price, new Date().toString()],
+            tx.executeSql('INSERT INTO sells (idProduct, price, updatedAt ) VALUES(?,?,?)', [item.id, item.price, new Date().toISOString()],
                 (txObj, resultSet) => {
                     if (resultSet.rowsAffected > 0) {
                         getProducts()

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Picolero",
     "slug": "picolero",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -36,6 +36,7 @@
     "updates": {
       "fallbackToCacheTimeout": 300000,
       "url": "https://u.expo.dev/e8a56a59-c749-4d1d-9ec8-adaff622e020"
-    }
+    },
+    "plugins": ["expo-document-picker"]
   }
 }

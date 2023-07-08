@@ -1,13 +1,13 @@
 # Picolero
 
-React Native App developed to be used to controll sells of a ice cream store.\
+React Native App developed to be used to control sells of a ice cream store.\
 It's simple but its works
 
 **TODO LIST**
 
-- [ ] Add a AppIcon
+- [x] Add a AppIcon
 - [ ] Dashboard with the sells per day
-- [ ] Import database
+- [x] Import database
 - [ ] Improve layout
 
 ---
@@ -15,3 +15,16 @@ It's simple but its works
 ![Screen Shot](screenShot.png?raw=true "Title")
 
 ---
+
+\
+---- **Build the APK file with Expo** ----
+
+```
+eas build -p android --profile preview
+```
+
+---- **Make a update to APK with Expo** ----
+
+```
+eas update -m message
+```
