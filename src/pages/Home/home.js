@@ -148,18 +148,18 @@ export default function Home({ navigation }) {
                 <TouchableOpacity title="GO TO Sells" onPress={() => {
                     navigation.navigate('SellsPage', { name: 'Jane' })
                 }}
-                    style={{ ...styles.button, backgroundColor: "#0FF" }}>
+                    style={{ ...styles.button, backgroundColor: "#0FF", justifyContent: "flex-start" }}>
                     <MaterialIcons name="attach-money" size={30} style={styles.icon} />
-                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", alignContent: "center" }} >
+                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333" }} >
                         Vendas
                     </Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.containerButton}>
                 <TouchableOpacity title="GO TO Dash" onPress={() => { getTotalToday() }}
-                    style={{ ...styles.button, backgroundColor: "#f99" }}>
+                    style={{ ...styles.button, backgroundColor: "#f99", justifyContent: "flex-start" }}>
                     <MaterialIcons name="error" size={30} style={styles.icon} />
-                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", alignContent: "center" }} >
+                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333" }} >
                         Dasboard
                     </Text>
                 </TouchableOpacity>
@@ -167,15 +167,15 @@ export default function Home({ navigation }) {
             <View style={{ ...styles.containerButton, justifyContent: "space-between", top: 150 }}>
                 <TouchableOpacity title="ExportDB" onPress={handleImportDBFile}
                     style={{ ...styles.button, backgroundColor: "#AFF", maxWidth: "40%" }}>
-                    <MaterialIcons name="file-upload" size={30} style={{ ...styles.icon, marginLeft: -15 }} />
-                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", alignContent: "center" }} >
+                    <MaterialIcons name="file-upload" size={25} style={{ ...styles.icon }} />
+                    <Text style={{ fontWeight: 800, fontSize: 15, color: "#333", display: "flex", alignContent: "center" }} >
                         IMPORT DB
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity title="ExportDB" onPress={exportDbFile}
-                    style={{ ...styles.button, backgroundColor: "#AFF", maxWidth: "40%" }}>
-                    <MaterialIcons name="file-download" size={30} style={{ ...styles.icon, marginLeft: -15 }} />
-                    <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", alignContent: "center" }} >
+                    style={{ ...styles.button, backgroundColor: "#AFF", maxWidth: "40%", }}>
+                    <MaterialIcons name="file-download" size={25} style={{ ...styles.icon }} />
+                    <Text style={{ fontWeight: 800, fontSize: 15, color: "#333", display: "flex", alignContent: "center" }} >
                         EXPORT DB
                     </Text>
                 </TouchableOpacity>
@@ -209,6 +209,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         flexDirection: 'row',
         alignContent: 'center',
+        alignItems: "center",
+        justifyContent: "center"
     },
     icon: {
         alignContent: 'center',
