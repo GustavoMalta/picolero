@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Sells from '../pages/Sells/sells';
 import Home from '../pages/Home/home';
+import Dashboard from '../pages/Dashboard/dashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,18 @@ export const Routes = () => {
                         backgroundColor: '#4b0075',
                     },
                 }} />
+                <Stack.Screen
+                    name="Dashboard"
+                    component={Dashboard}
+                    options={{
+                        title: 'Dashboard',
+                        headerTintColor: '#fff',
+                        headerTitleAlign: "center",
+                        headerStyle: {
+                            backgroundColor: '#4b0075',
+                        },
+                    }}
+                />
                 <Stack.Screen
                     name="SellsPage"
                     component={Sells}

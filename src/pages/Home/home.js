@@ -146,7 +146,7 @@ export default function Home({ navigation }) {
             </View>
             <View style={styles.containerButton}>
                 <TouchableOpacity title="GO TO Sells" onPress={() => {
-                    navigation.navigate('SellsPage', { name: 'Jane' })
+                    navigation.navigate('SellsPage')
                 }}
                     style={{ ...styles.button, backgroundColor: "#0FF", justifyContent: "flex-start" }}>
                     <MaterialIcons name="attach-money" size={30} style={styles.icon} />
@@ -156,7 +156,9 @@ export default function Home({ navigation }) {
                 </TouchableOpacity>
             </View>
             <View style={styles.containerButton}>
-                <TouchableOpacity title="GO TO Dash" onPress={() => { getTotalToday() }}
+                <TouchableOpacity title="GO TO Dash" onPress={() => {
+                    navigation.navigate('Dashboard')
+                }}
                     style={{ ...styles.button, backgroundColor: "#f99", justifyContent: "flex-start" }}>
                     <MaterialIcons name="error" size={30} style={styles.icon} />
                     <Text style={{ fontWeight: 800, fontSize: 20, color: "#333" }} >

@@ -6,7 +6,7 @@ It's simple but its works
 **TODO LIST**
 
 - [x] Add a AppIcon
-- [ ] Dashboard with the sells per day
+- [x] Dashboard with the sells per day
 - [x] Import database
 - [ ] Improve layout
 

@@ -1,7 +1,6 @@
-import { Button, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-import { useEffect, useMemo, useState } from "react";
-import { getProducts } from "../../services/database";
+import { useEffect, useState } from "react";
 
 import * as SQLite from "expo-sqlite"
 
@@ -231,7 +230,7 @@ const products = [
 
 export default function Sells() {
     const [isLoading, setIsLoading] = useState(false)
-    const [test, setTest] = useState(0)
+    const [totalValue, setTotalValue] = useState(0)
     const [db, setDb] = useState(SQLite.openDatabase("Picolero.db"))
 
     const [list, setList] = useState([])
@@ -320,7 +319,7 @@ export default function Sells() {
             );
         });
 
-        setTest(test + item.price)
+        setTotalValue(totalValue + item.price)
 
 
         // if (item.sells >= 0) {
@@ -329,7 +328,7 @@ export default function Sells() {
         // }
     }
     const clearTotal = () => {
-        setTest(0)
+        setTotalValue(0)
 
     }
 
@@ -347,8 +346,8 @@ export default function Sells() {
             );
         });
 
-        if (test - item.price >= 0)
-            setTest(test - item.price)
+        if (totalValue - item.price >= 0)
+            setTotalValue(totalValue - item.price)
 
         // if (item.sells >= 0) {
         //     item.updatedAt = new Date().getHours().toString().padStart(2, '0') + ":" + new Date().getMinutes().toString().padStart(2, '0')
@@ -376,7 +375,7 @@ export default function Sells() {
                         fontWeight: 600,
                         textAlign: "center",
                         backgroundColor: "#0FF"
-                    }} >Total Venda €{test.toFixed(2)}</Text>
+                    }} >Total Venda €{totalValue.toFixed(2)}</Text>
 
                 </TouchableOpacity>
             </View>
