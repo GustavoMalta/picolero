@@ -63,16 +63,15 @@ export default function Dashboard() {
 
                     lastMonth = list[x - 1] ? String(list[x - 1].updatedAt.getMonth() + 1).padStart(2, '0') : null;
 
-                    return (<>
-                        {lastMonth != month && <>
-                            <View style={styles.containerButton}>
+                    return (<View key={x}>
+                        {lastMonth != month && (
+                            <View style={styles.containerButton} key={x}>
                                 <Text style={{ fontWeight: 800, fontSize: 20, color: "#333", display: "flex", justifyContent: "center" }} >
                                     Mês {month} ({total[month]?.days} dia{total[month]?.days > 1 && "s"}) € {total[month]?.value?.toFixed(2)} ({total[month]?.count} vendas)
                                 </Text>
                             </View>
-                        </>
-                        }
-                        <View style={styles.view} key={x}>
+                        )}
+                        <View style={styles.view}>
                             <View style={{ width: "100%" }}>
                                 <View style={{ ...styles.viewItem, paddingBottom: 5 }}>
                                     <Text style={styles.viewItemBold}>{date}</Text>
@@ -87,7 +86,7 @@ export default function Dashboard() {
                                 </View>
                             </View>
                         </View>
-                    </>
+                    </View>
                     )
                 })}
 
